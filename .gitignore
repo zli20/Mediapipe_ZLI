@@ -9,6 +9,8 @@ CmakePresets.json
 3rdparty/*
 !3rdparty/.gitkeep
 
+mediapipe/*
+
 x64/*
 rtmpose/*
 
