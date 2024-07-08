@@ -20,12 +20,12 @@ https://github.com/google-ai-edge/mediapipe/blob/master/docs/getting_started/cpp
 2. bazel环境配置时要注意：  
 BAZEL_WINSDK_FULL_VERSION WINSDK的版本号在"程序和功能"里边可能有多个，可以通过下面两个方式确认：  
 在C:\Program Files (x86)\Windows Kits\10\bin 有当前安装的所有winsdk版本号。  
-![winsdk版本](sources/1.png")
+![winsdk版本]("./sources/1.png")  
 在Visual Stdio Installer ->　vs2019 -> 修改 -> 使用c++的桌面开发中可以查询当前使用的版本号。  
-![vswinsdk版本](sources/2.png")
+![vswinsdk版本]("./sources/2.png")  
 3. 如果环境都配置好了，安装了多个版本vs时候，编译时指向的是其他版本，可能就是bazel环境配置有问题（我自己在编译时，编译时一直指向vs2022的编译器），建议把这几个环境变量直接加到系统环境变量中。  
 在编译过程出现找不到 windows.h 或其他头文件的问题，可能是bazel没有找到winsdk的路径，需要设置 BAZEL_WINSDK变量，同样添加到系统变量中。  
-![环境变量](sources/3.png")
+![环境变量]("./sources/3.png")
 4. 编译helloworld可以正常运行，但是其他demo时，出现 `tensorflow/lite/core/c/operator.cc(28): error C7555: 使用指定的初始值设定项至少需要“/std:c++20”`,是库依赖版本的问题。  
 解决方法是使用其他的版本的mediapipe。（我试了git clone 和0.10.13都有这个问题，最终使用0.10.10运行成功）。  
 ### 封装dll并使用
