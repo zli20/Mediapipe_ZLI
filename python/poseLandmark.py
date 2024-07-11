@@ -8,7 +8,8 @@ mp_holistic = mp.solutions.holistic  # 全身识别跟踪
 
 mp_pose = mp.solutions.pose  # 姿态估计
 
-cap = cv2.VideoCapture(1)
+path = r"D:\svn_file\HSCore\MotionCapture\data\taiji.mp4"
+cap = cv2.VideoCapture(path)
 
 holistic = mp_holistic.Holistic(static_image_mode=False,
                                 smooth_landmarks=True,
@@ -24,11 +25,15 @@ while cap.isOpened():
     success, image = cap.read()
     if not success:
         print("Ignoring empty camera frame.")
-        continue
+        break
     image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
     # results = holistic.process(image_rgb)
     results = pose.process(image_rgb)
     mp_drawing.draw_landmarks(image, results.pose_landmarks, mp_holistic.POSE_CONNECTIONS)
+    if results.pose_landmarks:
+        for index, landmarks in enumerate(results.pose_landmarks.landmark):
+            print(index,landmarks)
+
     cv2.imshow("frame", image)
     cv2.waitKey(1)

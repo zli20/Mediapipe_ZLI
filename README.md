@@ -20,7 +20,7 @@ https://github.com/google-ai-edge/mediapipe/blob/master/docs/getting_started/cpp
 2. bazel环境配置时要注意：  
 BAZEL_WINSDK_FULL_VERSION WINSDK的版本号在"程序和功能"里边可能有多个，可以通过下面两个方式确认：  
 在C:\Program Files (x86)\Windows Kits\10\bin 有当前安装的所有winsdk版本号。  
-![winsdk版本](./sources/1.png")
+![winsdk版本](./sources/1.png")  
 在Visual Stdio Installer ->　vs2019 -> 修改 -> 使用c++的桌面开发中可以查询当前使用的版本号。  
 ![vswinsdk版本](./sources/2.png")
 3. 如果环境都配置好了，安装了多个版本vs时候，编译时指向的是其他版本，可能就是bazel环境配置有问题（我自己在编译时，编译时一直指向vs2022的编译器），建议把这几个环境变量直接加到系统环境变量中。  
@@ -36,7 +36,7 @@ BAZEL_WINSDK_FULL_VERSION WINSDK的版本号在"程序和功能"里边可能有�
  ```
 bazel build -c opt --define MEDIAPIPE_DISABLE_GPU=1 --action_env PYTHON_BIN_PATH="D:\\anconda\\envs\\mediapipe\\python.exe" mediapipe/examples/desktop/hS_pose:hs_holistic_track --verbose_failures
 ```
-3. 根据DLL_use中的代码调用即可。程序运行时要把meidiapipe仓库和openccv依赖拷贝到到程序的运行目录下。  
+3. 根据DLL_use中的代码调用即可。程序运行时要把meidiapipe仓库和openccv依赖拷贝到到程序的运行目录下，注意是工程目录下。  
 
 封装和使用过程遇到的问题：
 1. 下载的库中没有模型。本人没有找到下载链接，所以是从从python版本的库中拷贝过来的，位于 `D:\anconda\envs\mediapipe\Lib\site-packages\mediapipe\modules`
@@ -64,4 +64,4 @@ bazel build -c opt --define MEDIAPIPE_DISABLE_GPU=1 --action_env PYTHON_BIN_PATH
 		bool show_result_image = false,
 		bool is_debug = false);
 ```
-
+3. 模型推理得到结果时，`m_pRightHandLandmarksPoller->QueueSize()`始终是0，将这里注释掉后，但关键点数据却可以正常得到。 原因还未知，还需要详细查看mediapipe API中QueueSize是什么意思。

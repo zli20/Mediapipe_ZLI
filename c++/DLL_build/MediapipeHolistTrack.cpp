@@ -321,8 +321,8 @@ absl::Status MediapipeHolistTrack::Mediapipe_RunMPPGrapht(
 	{
 		mediapipe::Packet poseeWorldLandmarksPacket;
 
-		if (m_pPoseWorldLandmarksPoller->QueueSize() != 0)
-		{
+		//if (m_pPoseWorldLandmarksPoller->QueueSize() != 0)
+		//{
 			if (m_pPoseWorldLandmarksPoller->Next(&poseeWorldLandmarksPacket))
 			{
 				auto& output_landmarks = poseeWorldLandmarksPacket.Get<mediapipe::NormalizedLandmarkList>();	
@@ -347,7 +347,7 @@ absl::Status MediapipeHolistTrack::Mediapipe_RunMPPGrapht(
 				}
 				holist_result["PoseWorldLandmarks"] = posePoints;
 			}
-		}
+		//}
 		if (is_debug) {
 			std::cout << "Get PoseWorldLandmarks Packet Success" << std::endl;
 		}
@@ -357,8 +357,8 @@ absl::Status MediapipeHolistTrack::Mediapipe_RunMPPGrapht(
 	if (m_pLeftHandLandmarksPoller != nullptr)
 	{
 		mediapipe::Packet leftHandLandmarksPacket;
-		if (m_pLeftHandLandmarksPoller->QueueSize() > 0)
-		{
+		//if (m_pLeftHandLandmarksPoller->QueueSize() > 0)
+		//{
 			if (m_pLeftHandLandmarksPoller->Next(&leftHandLandmarksPacket))
 			{
 				auto& output_landmarks = leftHandLandmarksPacket.Get<mediapipe::NormalizedLandmarkList>();
@@ -383,7 +383,7 @@ absl::Status MediapipeHolistTrack::Mediapipe_RunMPPGrapht(
 				}
 				holist_result["LeftHandLandmarks"] = posePoints;
 			}
-		}
+		//}
 		if (is_debug) {
 			std::cout << "Get LeftHandLandmarks Packet Success" << std::endl;
 		}
@@ -394,8 +394,8 @@ absl::Status MediapipeHolistTrack::Mediapipe_RunMPPGrapht(
 	{
 		mediapipe::Packet rightHandLandmarksPacket;
 
-		if (m_pRightHandLandmarksPoller->QueueSize() > 0)
-		{
+		//if (m_pRightHandLandmarksPoller->QueueSize() > 0)
+		//{
 			if (m_pRightHandLandmarksPoller->Next(&rightHandLandmarksPacket))
 			{
 				auto& output_landmarks = rightHandLandmarksPacket.Get<mediapipe::NormalizedLandmarkList>();
@@ -420,7 +420,7 @@ absl::Status MediapipeHolistTrack::Mediapipe_RunMPPGrapht(
 				}
 				holist_result["RightHandLandmarks"] = posePoints;
 			}
-		}
+		//}
 		if (is_debug) {
 			std::cout << "Get RightHandLandmarks Packet Success" << std::endl;
 		}
@@ -430,8 +430,8 @@ absl::Status MediapipeHolistTrack::Mediapipe_RunMPPGrapht(
 	if (m_pFaceLandmarksPoller != nullptr)
 	{
 		mediapipe::Packet faceLandmarksPacket;
-		if (m_pFaceLandmarksPoller->QueueSize() > 0)
-		{
+		//if (m_pFaceLandmarksPoller->QueueSize() > 0)
+		//{
 			if (m_pFaceLandmarksPoller->Next(&faceLandmarksPacket))
 			{
 				auto& output_landmarks = faceLandmarksPacket.Get<mediapipe::NormalizedLandmarkList>();
@@ -455,7 +455,7 @@ absl::Status MediapipeHolistTrack::Mediapipe_RunMPPGrapht(
 				}
 				holist_result["FaceLandmarks"] = posePoints;
 			}
-		}
+		//}
 		if (is_debug) {
 			std::cout << "Get FaceLandmarks Packet Success" << std::endl;
 		}
