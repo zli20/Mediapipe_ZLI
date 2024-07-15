@@ -26,8 +26,9 @@ BAZEL_WINSDK_FULL_VERSION WINSDK的版本号在"程序和功能"里边可能有�
 3. 如果环境都配置好了，安装了多个版本vs时候，编译时指向的是其他版本，可能就是bazel环境配置有问题（我自己在编译时，编译时一直指向vs2022的编译器），建议把这几个环境变量直接加到系统环境变量中。  
 在编译过程出现找不到 windows.h 或其他头文件的问题，可能是bazel没有找到winsdk的路径，需要设置 BAZEL_WINSDK变量，同样添加到系统变量中。  
 ![环境变量](./sources/3.png)
-4. 编译helloworld可以正常运行，但是其他demo时，出现 `tensorflow/lite/core/c/operator.cc(28): error C7555: 使用指定的初始值设定项至少需要“/std:c++20”`,是库依赖版本的问题。  
-解决方法是使用其他的版本的mediapipe。（我试了git clone 和0.10.13都有这个问题，最终使用0.10.10运行成功）。  
+4. 编译helloworld可以正常运行，但是其他demo时，出现 `tensorflow/lite/core/c/operator.cc(28): error C7555: 使用指定的初始值设定项至少需要“/std:c++20”`,是mscv c++特性版本的问题。  
+解决方案一：使用其他的版本的mediapipe。（我试了git clone 和0.10.13都有这个问题，最终使用0.10.10运行成功）。  
+解决方案二： 参考https://blog.csdn.net/jsszzxo/article/details/140039137?spm=1001.2014.3001.5501
 ### 封装dll并使用
 主要参考的是这位大佬的代码，https://github.com/HW140701/GoogleMediapipePackageDll  
 对holistic_track关键点封装成动态库，供c++ 调用，使用过程如下：  
